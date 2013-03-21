@@ -33,7 +33,14 @@ set (SOURCES
    ../generic/vcos_generic_blockpool.c
 )
 
-if (VCOS_PTHREADS_BUILD_SHARED)
+if (ANDROID)
+   add_library (vcos SHARED ${SOURCES})
+   if (VCOS_PTHREADS_BUILD_SHARED)
+      target_link_libraries (vcos dl)
+   else ()
+      target_link_libraries (vcos)
+   endif ()
+elseif (VCOS_PTHREADS_BUILD_SHARED)
    add_library (vcos SHARED ${SOURCES})
    target_link_libraries (vcos pthread dl rt)
 else ()

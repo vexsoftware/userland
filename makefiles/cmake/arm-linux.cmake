@@ -15,6 +15,9 @@ endif()
 
 # pull in headers for android
 if(ANDROID)
+    # Define Android
+    add_definitions(-DANDROID)
+
     #
     # work out where android headers and library are
     #
